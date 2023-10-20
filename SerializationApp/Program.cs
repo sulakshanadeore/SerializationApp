@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
+using System.Text.Json;
+
 namespace SerializationApp
 {
     internal class Program
@@ -19,25 +21,53 @@ namespace SerializationApp
             //BinaryDeserializationDemo();
 
             //XmlSerializationDemo();
-            XmlSerializer serializer = new XmlSerializer(typeof(Customer));
-            FileStream fs = new FileStream("D:\\NewDrive\\MphasisSept\\custdata.xml", FileMode.Open, FileAccess.Read);
-            Customer readObj=(Customer)serializer.Deserialize(fs);
-            Console.WriteLine(readObj.custid);
-            Console.WriteLine(  readObj.custname);
-            Console.WriteLine(  readObj.LoginID);
-            fs.Flush();
-            fs.Close();
+            //XmlDeserializationDemo();
 
-            fs.Dispose();
-
-
-
-
+            //JsonSerializationDemo();
+            string filename = "D:\\NewDrive\\MphasisSept\\weather1.json";
+            string jsondata = File.ReadAllText(filename);
+            Console.WriteLine(jsondata);
+            Console.WriteLine( "-------------");
+            weatherForecast dataobj=JsonSerializer.Deserialize<weatherForecast>(jsondata);
+            Console.WriteLine(  dataobj.ForecastDate);
+            Console.WriteLine(dataobj.Temperature);
+            Console.WriteLine(dataobj.DaySummary);
 
             Console.ReadLine();
 
 
 
+        }
+
+        private static void JsonSerializationDemo()
+        {
+            var obj = new weatherForecast()
+            {
+                ForecastDate = DateTime.Now,
+                Temperature = 34,
+                DaySummary = "Hot and Humid"
+            };
+
+
+            string jsondata = JsonSerializer.Serialize(obj);
+
+            File.WriteAllText("D:\\NewDrive\\MphasisSept\\weather1.json", jsondata);
+
+            Console.WriteLine("data recorded successfully....");
+        }
+
+        private static void XmlDeserializationDemo()
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(Customer));
+            FileStream fs = new FileStream("D:\\NewDrive\\MphasisSept\\custdata.xml", FileMode.Open, FileAccess.Read);
+            Customer readObj = (Customer)serializer.Deserialize(fs);
+            Console.WriteLine(readObj.custid);
+            Console.WriteLine(readObj.custname);
+            Console.WriteLine(readObj.LoginID);
+            fs.Flush();
+            fs.Close();
+
+            fs.Dispose();
         }
 
         private static void XmlSerializationDemo()

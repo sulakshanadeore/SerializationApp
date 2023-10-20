@@ -1,0 +1,107 @@
+
+
+Class Library----- 
+why? --> reuse the code
+Class library/consoleapp----->Assembly
+
+namespace LibraryCode//assembly
+{
+
+
+
+}
+
+System
+System.Io etc-----> Assembly/ies
+-------------------------------------
+1)Private 
+2)Public--system, system.io 
+3)Satellite
+
+
+1)Public assemblies-----GAC(Global Assembly Cache) folder
+Shared/Common Area--- GAC
+
+C:\Windows\assembly
+------------------------
+
+
+2)Private Assemblies--- We create class library
+Convert private assemblies to public assemblies----- so that copies of the assembly
+are not created in every project.
+*Only single copy will be there and that will be shared by mutliple projects.
+dll size.
+
+11 kb---- 1 project(15kb)=26 kb
+
+dll size
+55kb ----- 5 project
+
+1 step) create your assembly.
+write the code
+2step) build it.
+3 step) strong name key file for the file.
+signature which is generated as a crytographic file which has a token to make it public.
+3.1)Contains assembly identity------ major, minor,build & revision
+3.2) Private key of the assembly
+CLR generated.
+Properties---Signing--Sign the assembly---give a name with extension(.snk)
+4 step) again build
+5 step) install it in the gac
+5.1)Open the command prompt---Command Line and Developer Command prompt
+gacutil -i "path of the assembly dll"
+
+check library at this path= "C:\Windows\Microsoft.NET\assembly\GAC_MSIL"
+
+
+
+
+
+
+
+
+
+
+
+--------------------------
+3) Satellite Assembly
+multi-lingual  app
+
+Paytm app----  Pay (English)
+	       bhara(Marathi)
+	       pradanKaro(Hindi)
+
+
+mulitple words---- write equivalent words in whatever language u want
+(Locale)----Localisation
+January-----janwari----janewary---
+
+UK
+US(NY)
+US(english)
+
+Globalisation-----
+date----31st Jan
+12 hour 
+24 hour
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,85 @@
+
+
+
+		Serialization
+--------------------------------------------------
+
+File---> formats---->.txt, .bin,.xml
+
+Usually, contents of the file is objects.
+		 written
+Class----> object----->file---->transfer that data across the network
+
+Writing the object to the file is called as Serialization.
+Reading the object from the file is called as DeSerialization.
+
+Offer Letter-----> writing to file is serialization
+
+class Orders{ properties--
+OrderDate Productid Productname Qty Price modeofPayment DeliveryAddress 
+
+Sensitive---->debitcardno & pin (should not be written to the file)
+}
+
+1) class give you the permission that its object can be written to a file.
+the permission is given by the class in the form of a attribute attached to the class.
+[Serializable()]
+[Serializable]
+
+2) [NonSerialized]
+object of class orders-----> put the data in the object using properties
+
+create file---filestream
+write to  file the object
+save file 
+close file
+-----------------------------------------------------
+Binary Format ----- Binary Serialiazation
+using System.Runtime.Serialization.Formatters.Binary;
+
+--------------------------------------
+XML Format------> XML Serialization
+XML Serializer class it serializes anything which is public, though it is marked as 
+NonSerialized.
+
+<customer>
+<custid>1</custid>
+<custname>ana</custname>
+<loginid>ana1</loginid>
+
+</customer>
+------------------------------------------------
+{"OrderDate":"2019-08-01T00:00:00-07:00","OrderID":25,"ProductName":"Harddisk"}
+
+Json format---- Json Serializer----System.Text.Json.Serialization
+Json Serialization:
+1) create class with [Serializable()] in the class library
+2) Console App---Under Tools menu --> Nuget Package Manager---> Manage Nuget PAckages for Solution
+Browse----> System.Text.Json---- Install it
+3) Write the code for Serialization and Deserialization
+var weatherForecast = new WeatherForecast
+            {
+                Date = DateTime.Parse("2019-08-01"),
+                TemperatureCelsius = 25,
+                Summary = "Hot"
+            };
+
+            string jsonString = JsonSerializer.Serialize(weatherForecast);
+
+            Console.WriteLine(jsonString);
+
+-------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
